@@ -1,0 +1,68 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title>
+      Conversor de Peso
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Introduce el peso:</ion-label>
+    <ion-input type="number" [(ngModel)]="valor"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Unidad de origen:</ion-label>
+    <ion-select [(ngModel)]="unidadOrigen">
+      <ion-select-option value="kg">Kilogramos</ion-select-option>
+      <ion-select-option value="lb">Libras</ion-select-option>
+      <ion-select-option value="g">Gramos</ion-select-option>
+      <ion-select-option value="oz">Onzas</ion-select-option>
+      <ion-select-option value="t">Toneladas Métricas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Botón para convertir peso -->
+  <ion-button expand="full" (click)="convertirPeso()">Convertir</ion-button>
+  <!-- Botón para invertir unidades -->
+  <ion-button expand="full" (click)="invertirUnidades()">Invertir Unidades</ion-button>
+
+
+  <ion-item>
+    <ion-label>Unidad de destino:</ion-label>
+    <ion-select [(ngModel)]="unidadDestino">
+      <ion-select-option value="kg">Kilogramos</ion-select-option>
+      <ion-select-option value="lb">Libras</ion-select-option>
+      <ion-select-option value="g">Gramos</ion-select-option>
+      <ion-select-option value="oz">Onzas</ion-select-option>
+      <ion-select-option value="t">Toneladas Métricas</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Resultado:</ion-label>
+    <ion-input type="text" [(ngModel)]="resultado"></ion-input>
+  </ion-item>
+
+  <!-- Botón para limpiar resultados -->
+  <ion-button expand="full" (click)="limpiarResultados()">Limpiar</ion-button>
+
+  <!-- Historial de conversiones -->
+  <ion-list *ngIf="historialConversiones.length > 0">
+    <ion-list-header>
+      Historial de Conversiones
+    </ion-list-header>
+    <ion-item *ngFor="let conversion of historialConversiones">
+      {{ conversion.valor }} {{ conversion.origen }} = {{ conversion.resultado }} {{ conversion.destino }}
+    </ion-item>
+  </ion-list>
+
+  <!-- Botón para reiniciar la aplicación -->
+  <ion-button expand="full" (click)="reiniciar()">Reiniciar</ion-button>
+  <!-- Botón para descargar el historial en un Json-->
+  <ion-button expand="full" (click)="exportarHistorial()">Exportar Historial</ion-button>
+
+  
+
+</ion-content>

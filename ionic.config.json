@@ -1,0 +1,7 @@
+{
+  "name": "ActividadRecogidaYMuestra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
