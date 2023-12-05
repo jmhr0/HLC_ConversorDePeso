@@ -11,9 +11,9 @@
     <ion-label>Introduce el peso:</ion-label>
     <ion-input type="number" [(ngModel)]="valor"></ion-input>
   </ion-item>
-
   <ion-item>
     <ion-label>Unidad de origen:</ion-label>
+    <!-- Selección de la unidad de origen -->
     <ion-select [(ngModel)]="unidadOrigen">
       <ion-select-option value="kg">Kilogramos</ion-select-option>
       <ion-select-option value="lb">Libras</ion-select-option>
@@ -23,14 +23,14 @@
     </ion-select>
   </ion-item>
 
-  <!-- Botón para convertir peso -->
+  <!-- Botón para realizar la conversión de peso -->
   <ion-button expand="full" (click)="convertirPeso()">Convertir</ion-button>
-  <!-- Botón para invertir unidades -->
+  <!-- Botón para invertir las unidades de origen y destino -->
   <ion-button expand="full" (click)="invertirUnidades()">Invertir Unidades</ion-button>
-
 
   <ion-item>
     <ion-label>Unidad de destino:</ion-label>
+    <!-- Selección de la unidad de destino -->
     <ion-select [(ngModel)]="unidadDestino">
       <ion-select-option value="kg">Kilogramos</ion-select-option>
       <ion-select-option value="lb">Libras</ion-select-option>
@@ -40,29 +40,28 @@
     </ion-select>
   </ion-item>
 
+  <!-- Resultado de la conversion -->
   <ion-item>
     <ion-label>Resultado:</ion-label>
     <ion-input type="text" [(ngModel)]="resultado"></ion-input>
   </ion-item>
 
-  <!-- Botón para limpiar resultados -->
+  <!-- Reinicia los valores de origen y destino -->
   <ion-button expand="full" (click)="limpiarResultados()">Limpiar</ion-button>
 
-  <!-- Historial de conversiones -->
+  <!-- Creamos una lista para mostrar el historial de conversiones -->
   <ion-list *ngIf="historialConversiones.length > 0">
     <ion-list-header>
       Historial de Conversiones
     </ion-list-header>
+    <!-- Mostrar cada conversion en el historial -->
     <ion-item *ngFor="let conversion of historialConversiones">
       {{ conversion.valor }} {{ conversion.origen }} = {{ conversion.resultado }} {{ conversion.destino }}
     </ion-item>
   </ion-list>
 
-  <!-- Botón para reiniciar la aplicación -->
+  <!-- Boton para el reinicio de valores -->
   <ion-button expand="full" (click)="reiniciar()">Reiniciar</ion-button>
-  <!-- Botón para descargar el historial en un Json-->
+  <!-- Boton para exportación del historial -->
   <ion-button expand="full" (click)="exportarHistorial()">Exportar Historial</ion-button>
-
-  
-
 </ion-content>

@@ -1,5 +1,5 @@
-// home.page.ts
 import { Component } from '@angular/core';
+// importamos toastcontroller para añadir la funcion de historial
 import { ToastController } from '@ionic/angular';
 
 interface Conversion {
@@ -14,7 +14,7 @@ interface Conversion {
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-
+//Control de variables para gestionar la entrada del usuario y los resultados
   valor: number;
   unidadOrigen: string;
   unidadDestino: string;
@@ -23,7 +23,7 @@ export class HomePage {
   // Historial de conversiones realizadas
   historialConversiones: { origen: string, destino: string, valor: number, resultado: number }[] = [];
 
-  // Objeto de conversiones disponibles
+  // Conversiones disponibles
   conversiones: Conversion = {
     kg: { lb: 2.20462, g: 1000, oz: 35.27396, t: 0.001 },
     lb: { kg: 0.453592, g: 453.592, oz: 16, t: 0.000453592 },
@@ -31,7 +31,7 @@ export class HomePage {
     oz: { kg: 0.0283495, lb: 0.0625, g: 28.3495, t: 0.0000283495 },
     t: { kg: 1000, lb: 2204.62, g: 1000000, oz: 35273.96 },
   };
-
+// Inicializamos los valores por defecto en el constructor y añadimos la dependencia ToastController
   constructor(private toastController: ToastController) {
     this.valor = 0;
     this.unidadOrigen = 'kg';
@@ -39,6 +39,7 @@ export class HomePage {
     this.resultado = 0;
   }
 
+    // Método para realizar la conversión
   convertirPeso() {
     this.resultado = this.valor * this.conversiones[this.unidadOrigen][this.unidadDestino];
 
@@ -51,18 +52,20 @@ export class HomePage {
     });
   }
 
+
+  // Reiniciar todos los valores a los valores por defecto
   limpiarResultados() {
     this.valor = 0;
     this.resultado = 0;
   }
-
+  // Invertir las unidades de origen y destino
   invertirUnidades() {
-    const temp = this.unidadOrigen;
+    var trans = this.unidadOrigen;
     this.unidadOrigen = this.unidadDestino;
-    this.unidadDestino = temp;
+    this.unidadDestino = trans;
     this.convertirPeso();
   }
-
+    // Reiniciar todos los valores a los valores por defecto y borra el historial
   reiniciar() {
     this.valor = 0;
     this.unidadOrigen = 'kg';
@@ -70,6 +73,7 @@ export class HomePage {
     this.resultado = 0;
     this.historialConversiones = [];
   }
+    // Método para exportar el historial como un archivo JSON
   async exportarHistorial() {
     try {
       const historialString = JSON.stringify(this.historialConversiones, null, 2);
@@ -84,7 +88,7 @@ export class HomePage {
       a.click();
       document.body.removeChild(a);
 
-
+      // Mostrar un mensaje de éxito con ToastController
       const toast = await this.toastController.create({
         message: 'Historial exportado con éxito',
         duration: 2000,
@@ -92,13 +96,6 @@ export class HomePage {
       });
       toast.present();
     } catch (error) {
-      console.error('Error al exportar el historial', error);
-      const toast = await this.toastController.create({
-        message: 'Error al exportar el historial',
-        duration: 2000,
-        position: 'bottom'
-      });
-      toast.present();
     }
   }
 }
