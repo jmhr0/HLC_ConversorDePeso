@@ -25,3 +25,46 @@
 #container a {
   text-decoration: none;
 }
+
+
+// Estilos para pantallas pequeñas, todos los elementos dentro de un ion-item tendran el color rojo y una font-size pequeña
+ion-header {
+  font-size: 18px;
+}
+
+ion-item {
+  font-size:16px;
+  color: red;
+}
+// Estilos para pantallas medianas, todos los elementos dentro de un ion-item tendran el color negro y una font-size mediana
+@media (min-width: 600px) and (max-width: 900px) {
+  ion-header {
+    font-size: 20px;
+  }
+
+  ion-item {
+    font-size:18px;
+    color: black;
+  }
+
+}
+
+// Estilos para pantallas Grandes, todos los elementos dentro de un ion-item tendran el color azul y una font-size grande
+@media (min-width: 901px) {
+  ion-header {
+    font-size:24px;
+  }
+
+  ion-item {
+    font-size: 20px;
+    color: blue;
+  }
+}
+
+// Ocultamos el elemento de la clase exportarDupli cuando la orientacion sea portrait (dispositivo en vertical)
+
+@media (orientation: portrait) {
+  .exportarDupli {
+    display: none;
+  }
+}

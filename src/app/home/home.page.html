@@ -63,5 +63,8 @@
   <!-- Boton para el reinicio de valores -->
   <ion-button expand="full" (click)="reiniciar()">Reiniciar</ion-button>
   <!-- Boton para exportación del historial -->
-  <ion-button expand="full" (click)="exportarHistorial()">Exportar Historial</ion-button>
+  <ion-button class="exportar" expand="full" (click)="exportarHistorial()">Exportar Historial</ion-button>
+
+  <!-- este boton desaparecera cuando la orientacion del dispositivo sea portrait, es decir, nuestro dispositivo este en vertical-->
+  <ion-button class="exportarDupli" expand="full" (click)="exportarHistorial()">Exportar Historial</ion-button>
 </ion-content>
